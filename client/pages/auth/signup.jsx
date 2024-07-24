@@ -3,9 +3,14 @@ import React, { useState } from "react";
 const SignUp = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
-	const onSubmit = (e) => {
+	const onSubmit = async (e) => {
 		e.preventDefault();
-		console.log(email, password);
+		const response = await axios.post("/api/users/signup", {
+			email,
+			password,
+		});
+
+		console.log(response.data);
 	};
 	return (
 		<form onSubmit={onSubmit}>
